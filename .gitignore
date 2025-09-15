@@ -1,0 +1,8 @@
+# Ignore all .exe files anywhere
+*.exe
+
+# Ignore all .vscode folders anywhere in the repo
+**/.vscode/
+
+# Ignore all output folders anywhere in the repo
+**/output/
