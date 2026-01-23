@@ -48,30 +48,14 @@ public:
 
     ListNode* middleNode(ListNode* head) {
         //using fast and slow method
-        ListNode* fast = head;
+        ListNode* fast = head->next;
         ListNode* slow = head;
-
-        while (fast->next != NULL)
-        {
-            fast = fast->next;
-            if(fast->next != NULL){
-                fast = fast->next;
-                slow=slow->next;
-            }
+        while(fast != NULL && fast->next != NULL){
+            fast = fast->next->next;
+            slow = slow->next;
         }
-        //when length is even, slow points to len/2-th node
-        //when length is odd, slow points to ceil(n/2)-th node
-        //LeetCode requires: if two middles, return the second  
-        //i.e when len is even the mid is len/2 + 1 th node
+
         
-        //so this verrion will works
-        //   while (fast != NULL) {
-        //     fast = fast->next;
-        //     if (fast != NULL) {
-        //         fast = fast->next;
-        //         slow = slow->next;
-        //     }
-        // }
 
         return slow; 
     }
@@ -100,7 +84,7 @@ void printLinkedList(ListNode* head) {
 }
 
 int main(){
-    vector<int>data = {1,5,6,7,8,10};
+    vector<int>data = {1,5,6,7,4};
     // create linked list from vector
     ListNode* head = createLinkedList(data);
 
@@ -108,7 +92,7 @@ int main(){
     printLinkedList(head);
     Solution2* obj = new Solution2();
     ListNode* middle = obj->middleNode(head);
-    printLinkedList(middle);
+    printLinkedList(middle->next);
 
 
 
