@@ -49,7 +49,7 @@ class Solution {
         int mid = l +(r-l)/2;
         //divide left half
         mergeSort(arr,l,mid);
-        //devide right half
+        //divide right half
         mergeSort(arr,mid+1,r);
         
         //now merge this left and right half array which are sorted now
