@@ -6,10 +6,13 @@ class Solution {
 public:
     bool canWeplace(vector<vector<char>>& bord, int row, int col, char i){
         for(int j = 0 ; j < 9; j++){
-            if(bord[row][j] == i) return false;   // row
-            if(bord[j][col] == i) return false;   // col
+            //row condition
+            if(bord[row][j] == i) return false;
+            //col conditon
+            if(bord[j][col] == i) return false;
         }
 
+        //sub grid conditin
         int startRow = (row/3) * 3;
         int startCol = (col/3) * 3;
 
@@ -25,22 +28,37 @@ public:
     bool solve(vector<vector<char>>& bord){
         for(int row = 0 ; row < 9 ; row++){
             for(int col = 0 ; col < 9 ; col++){
+                //if  empty cell
                 if(bord[row][col] == '.'){
+                    //ty to fill with 1 to 9
+
                     for(char i = '1' ; i <= '9'; i++){
                         if(canWeplace(bord,row,col,i)){
+                            //true
                             bord[row][col] = i;
-
+                            //recusrion call to fill next empty 
                             if(solve(bord) == true){
+                                //the next all empty spaces get filed
+                                //so current i is a valid for next combinations
                                 return true;
-                            } else {
+                            }else{
+                                //if we place current i here now
+                                //we cant place any i on the next any of one empty place
+                                //so remove it
                                 bord[row][col] = '.';
                             }
+
+                        }else{
+                            //cant try next i
+                            continue;
                         }
                     }
+                    //we cant palce any i on the empty space
                     return false;
                 }
             }
         }
+        
         return true;
     }
 
@@ -49,7 +67,6 @@ public:
     }
 };
 
-// -------- MAIN TEST CASE ----------
 int main() {
     vector<vector<char>> board = {
         {'5','3','.','.','7','.','.','.','.'},
