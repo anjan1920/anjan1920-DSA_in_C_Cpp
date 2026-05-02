@@ -4,35 +4,7 @@ using namespace std;
 
 class Solution {
 public:
-    void solve(vector<int>& nums,vector<vector<int>>& ans,vector<bool>& mpp,vector<int>& temp){
-
-        // base case
-        if(temp.size() == nums.size()){
-            // a permutation is generated
-            ans.push_back(temp);
-            return;
-        }
-
-        // loop to pick element which not picked yet
-        for(int i = 0; i < nums.size(); i++){
-
-            // if index already picked
-            if(mpp[i] == true){
-                continue;
-            }
-
-            // pick
-            mpp[i] = true;
-            temp.push_back(nums[i]);
-
-            solve(nums, ans, mpp, temp);
-
-            // recursion is over
-            // now remove this current element
-            temp.pop_back();
-            mpp[i] = false;
-        }
-    }
+   
 
     vector<vector<int>> permute(vector<int>& nums) {
         // ans vector

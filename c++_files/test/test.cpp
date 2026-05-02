@@ -1,10 +1,7 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
 int main() {
-    bool value = true;
-    cout<<(value);
-    
+    cout << "Hello bro" << endl;
     return 0;
 }
